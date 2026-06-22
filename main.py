@@ -20,11 +20,30 @@ def add_to_file(username, password, is_customer):
     
     return f
 
+def check_if_user_pass_in(f, username, password):
+    if username or password not in f:
+        auth = False
+    else:
+        auth = True
+
+    return auth
+
 def login_system(f):
     attempts = 3
-    print("Welcome Back!")
+    print("Hello!")
     username = input("Please enter your username: ")
     password = input("Please enter your password: ")
+    auth = check_if_user_pass_in(f, username, password)
+    while auth == False or attempts < 1:
+        print("Incorrect username/password!")
+        print(f"{attempts} attempts remaining.")
+        attempts -= 1
+        username = input("Please enter your username: ")
+        password = input("Please enter your password: ")
+        auth = check_if_user_pass_in(f, username, password)
+        if attempts == 0:
+            sys.exit("Ran out of attempts. Goodbye!")
+    print(f"Welcome back, {username}")
 
 def menu_page():
     print("S: Signup")
