@@ -52,8 +52,22 @@ def login_system(f):
 
     return is_customer
 
-def Add_Business(username, password, is_customer):
-    ""
+def input_business_name_type():
+    name = input("What is the name of your business? ")
+    bus_type = input("What industry does your business work in?")
+
+    return 
+
+def Add_Business(username, is_customer: bool):
+    if is_customer == True:
+        print("This mode is not for you! If you do want to create a business, create another account.")
+        return
+    else:
+        pass
+    try:
+        b = open("business_list.txt", "x")
+    except:
+        ""
 
 def menu_page():
     print("S: Signup")
