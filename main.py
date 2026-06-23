@@ -56,7 +56,7 @@ def input_business_name_type():
     name = input("What is the name of your business? ")
     bus_type = input("What industry does your business work in?")
 
-    return 
+    return name, bus_type
 
 def Add_Business(username, is_customer: bool):
     if is_customer == True:
@@ -66,8 +66,10 @@ def Add_Business(username, is_customer: bool):
         pass
     try:
         b = open("business_list.txt", "x")
+        name, bus_type = Add_Business()
+        b.write(f"{name} owned by {username} in the {bus_type} industry.")
     except:
-        ""
+        FileExistsError
 
 def menu_page():
     print("S: Signup")
