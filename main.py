@@ -52,6 +52,14 @@ def login_system(f):
 
     return is_customer
 
+def check_if_customer(is_customer: bool):
+    if is_customer == True:
+        can_bus = False
+    else:
+        can_bus = True
+    
+    return can_bus
+
 def input_business_name_type():
     name = input("What is the name of your business? ")
     bus_type = input("What industry does your business work in?")
@@ -59,20 +67,39 @@ def input_business_name_type():
     return name, bus_type
 
 def Add_Business(username, is_customer: bool):
-    if is_customer == True:
+    if check_if_customer(is_customer) == False:
         print("This mode is not for you! If you do want to create a business, create another account.")
         return
     else:
         pass
     try:
         b = open("business_list.txt", "x")
-        name, bus_type = Add_Business()
-        b.write(f"{name} owned by {username} in the {bus_type} industry.")
+        name, bus_type = input_business_name_type()
+        b.write(f"{name} owned by {username} in the {bus_type} industry.\n")
     except:
         FileExistsError
+    
+    return b, name
+
+def Add_Event(username, is_customer, b, name):
+    if check_if_customer(is_customer) == False:
+        print("This mode is not for you! If you do want to create a business, create another account.")
+        return
+    else:
+        pass
+    if username not in b:
+        print("There are no businesses listed under your username.")
+        return
+    else:
+        pass
+    for line in b:
+        if name in line:
+            event = input("What event would you like to add? ")
+    
 
 def menu_page():
     print("S: Signup")
     print("L: Login")
     print("A: Add Business")
+    print("E: Add Event/Item")
     
