@@ -78,7 +78,9 @@ def Add_Business(username, is_customer: bool):
         b.write(f"{name} owned by {username} in the {bus_type} industry.\n")
     except:
         FileExistsError
-    
+        b = open("business_list.txt", "a")
+        b.write(f"{name} owned by {username} in the {bus_type} industry.\n")
+
     return b, name
 
 def Get_Event_Name(username, is_customer, b, name):
@@ -107,10 +109,23 @@ def Get_Event_TimeORPrice():
         print("Please enter your price in USD, to two decimal places.")
         time_price = float(input())
 
+    return time_price
+
+def Add_to_Item_List(event, time_price, name):
+    try:
+        e = open("event_list.txt", "x")
+        e.write(f"{event} set up by {name} at time/price {time_price}")
+    except:
+        FileExistsError
+        e = open("event_list.txt", "a")
+        e.write(f"{event} set up by {name} at time/price {time_price}")
+
+    return e
+
 
 def menu_page():
     print("S: Signup")
     print("L: Login")
     print("A: Add Business")
     print("E: Add Event/Item")
-    
+    print("B: Book Event")
