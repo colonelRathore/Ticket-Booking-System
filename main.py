@@ -81,7 +81,7 @@ def Add_Business(username, is_customer: bool):
     
     return b, name
 
-def Add_Event(username, is_customer, b, name):
+def Get_Event_Name(username, is_customer, b, name):
     if check_if_customer(is_customer) == False:
         print("This mode is not for you! If you do want to create a business, create another account.")
         return
@@ -94,8 +94,19 @@ def Add_Event(username, is_customer, b, name):
         pass
     for line in b:
         if name in line:
-            event = input("What event would you like to add? ")
+            event = input("What event/item would you like to add? ")
     
+    return event
+
+def Get_Event_TimeORPrice():
+    ev_type = input("Please enter p if the event is an item, or t if it has a time? ")
+    if ev_type.lower() == "t":
+        print("Please enter your time as in the 24 hour clock. Example: 17:15, or 09:11")
+        time_price = input()
+    else:
+        print("Please enter your price in USD, to two decimal places.")
+        time_price = float(input())
+
 
 def menu_page():
     print("S: Signup")
