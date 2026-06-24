@@ -122,10 +122,21 @@ def Add_to_Item_List(event, time_price, name):
 
     return e
 
+#def Choose_E
 
 def menu_page():
-    print("S: Signup")
-    print("L: Login")
-    print("A: Add Business")
-    print("E: Add Event/Item")
-    print("B: Book Event")
+    opt = " "
+    while opt.upper() != "Q":   
+        print("S: Signup")
+        print("L: Login")
+        print("A: Add Business")
+        print("E: Add Event/Item")
+        print("B: Book Event")
+        print("Q: Quit Program")
+        if opt.upper() == "S":
+            username, password, is_customer = create_account()
+        opt = input()
+    sys.exit("Thanks for using the program! See you soon!")
+    #gonna keep on adding events!
+
+menu_page()
